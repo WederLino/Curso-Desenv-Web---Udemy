@@ -28,8 +28,23 @@ app.post("/pessoas", (req, resp) =>{
     let pessoa = req.body;
 
     dados.db.push(pessoa);
-
-    console.log(dados.db)
     
+})
+
+app.put("/pessoa/:id", (req, resp) =>{
+    
+    let pessoa = req.body;
+
+    let pessoaOriginal = dados.db.find(pessoa => pessoa.id == req.params.id);
+
+    pessoaOriginal.nome = pessoa.nome;
+    pessoaOriginal.idade = pessoa.idade;
+})
+
+app.delete("/pessoa/:id", (req, resp) =>{
+
+    let pessoaIndex = dados.db.findIndex(pessoa => pessoa.id == req.params.id);
+
+    dados.db.splice(pessoaIndex, pessoaIndex + 1)
 })
 
