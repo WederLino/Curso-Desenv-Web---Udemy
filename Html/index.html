@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usando Links</title>
+</head>
+<body>
+
+    <header>Usando Links</header>
+    <nav>
+        <a class="links" href="usandoLinks/entrouPag1.html">Pag1</a><br>
+        <a class="links" href="usandoLinks/entrouPag2.html">Pag2</a>
+    </nav>
+    <section id="conteudo"></section>
+    <script>
+        let links = document.getElementsByClassName("links");
+        
+        Array.from(links).forEach(link =>{
+            link.onclick = (e) =>{
+                
+                e.preventDefault();
+
+                let conteudo = document.getElementById("conteudo");
+
+                fetch(link.href).then(resposta => resposta.text()).then(html => conteudo.innerHTML = html); 
+            }
+        });
+           
+    </script>
+</body>
+</html>
