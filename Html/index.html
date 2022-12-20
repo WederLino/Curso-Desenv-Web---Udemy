@@ -30,7 +30,30 @@
                 fetch(link.href).then(resposta => resposta.text()).then(html => conteudo.innerHTML = html); 
             }
         });
-           
+    
+        function chamarClick(string){
+            let itens = [];
+
+            if(string == "public"){
+                itens = document.getElementsByClassName("itensPublic")
+            } 
+            else if(string == "app"){
+                itens = document.getElementsByClassName("itensApp")
+            }
+            else
+            {
+                itens = document.getElementsByClassName("itensConfig")
+            }
+            
+            Array.from(itens).forEach(x =>{
+                if(x.style.display == 'none'){
+                    x.style.display = ''
+                }
+                else{
+                    x.style.display = 'none'
+                }
+            })
+        }     
     </script>
 </body>
 </html>
