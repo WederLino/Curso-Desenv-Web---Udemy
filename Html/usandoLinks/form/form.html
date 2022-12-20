@@ -1,6 +1,34 @@
 <h1>Formulário</h1>
 
 <form action="http://localhost:4003/usuarios" method="POST">
-    <input type="text" name="nome">
+    Nome<input type="text" name="nome">
+    Senha<input type="password" name="senha">
+    <textarea name="bio"  cols="30" rows="10"></textarea>
+    <div>
+        <input type="radio" name="tipo" value="admin"> Admin
+        <input type="radio" name="tipo" value="usuario"> Usuário
+    </div>
+    <div>
+        <input type="checkbox" name="ativo">Ativo
+    </div>
+    <select name="estado">
+        <option value="mg">Minas Gerais</option>
+        <option value="sp">São Paulo</option>
+        <option value="rj">Rio De Janeiro</option>
+    </select>
     <button>Incluir</button>
 </form>
+
+<style>
+    input, textarea{
+        display: block;
+        margin: 10px;
+    }
+    input[type=radio], input[type=checkbox]{
+        display: inline;
+    }
+    select{
+        display: block;
+        margin: 10px;
+    }
+</style>

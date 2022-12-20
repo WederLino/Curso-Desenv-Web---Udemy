@@ -15,8 +15,6 @@ app.post("/usuarios", (req, res) =>{
     res.send("<h1>Ok</h1>")
 
    console.log(req.body)
-
-    
 })
 
 app.listen(port);
