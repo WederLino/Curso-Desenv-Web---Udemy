@@ -29,6 +29,29 @@
     </form>
     <div id="resultado"></div>
     <script>
-        // ...
+       document.usuarioForm.onsubmit = async (e) =>{
+        e.preventDefault();
+        const form = e.target;
+        const dados = new FormData(form);
+
+        const options = {
+            method: form.method,
+            body: new URLSearchParams(dados)
+        }
+
+        let resposta = await fetch (form.action, options)
+        resposta = await resposta.json();
+
+        const resultado = document.getElementById("resultado");
+
+        resultado.innerHTML = JSON.stringify(resposta);
+
+
+
+    
+
+
+
+       }
     </script>
 </body>

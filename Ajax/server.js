@@ -7,7 +7,10 @@ app.use(express.static("."))
 app.listen(port);
 
 
-app.get("/teste", (req, res) =>{
-    res.send("ok")
+app.post("/formulario", (req, res) =>{
+    res.send({
+        ...req.body,
+        id: 1
+    })
 })
 
