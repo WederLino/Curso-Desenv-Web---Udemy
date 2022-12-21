@@ -11,6 +11,63 @@
     <h1>Estados</h1>
 
     <script>
-        // ...
+        function ajax (config){
+            const xhr = new XMLHttpRequest();
+            xhr.open(config.method, config.url, true);
+            
+            xhr.onload = e =>{
+                if(xhr.status == 200){
+                    config.sucesso(xhr.response)
+                }
+                else if(XHR.status >= 400){
+                    config.erro({
+                        code: xhr.code,
+                        text: xhr.statusText
+                    })
+                }
+            }
+
+            xhr.send();
+        }
+
+        ajax({
+            method: "GET",
+            url: "dados/estados.json",
+            sucesso(response){
+                const resposta = JSON.parse(response);
+                criarTabela(resposta)
+                
+            },
+            erro(error){
+                const msg = document.createTextNode(`${error.code}:${error.text}`)
+                document.body.appendChild(msg)
+
+            }
+        })
+
+    function criarTabela(resposta){
+        const linhas = resposta.map(x =>{
+                    const tdId = document.createElement("td");
+                    tdId.innerHTML = x.id
+
+                    const tdNome = document.createElement("td");
+                    tdNome.innerHTML = x.nome
+
+                    const tdSingla = document.createElement("td");
+                    tdSingla.innerHTML = x.sigla
+
+                    const tr = document.createElement("tr");
+                    tr.appendChild(tdId)
+                    tr.appendChild(tdNome)
+                    tr.appendChild(tdSingla)
+
+                    return tr;
+                })
+
+                const tabela = document.createElement("table");
+                Array.from(linhas).forEach(x => tabela.appendChild(x))
+
+                document.body.appendChild(tabela)
+    }
     </script>
 </body>
