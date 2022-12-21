@@ -11,6 +11,17 @@
     <h1>Estados</h1>
 
     <script>
-        // ...
+        async function chamandoViaFetch(url){
+            const dados = await fetch(url);
+            const estados = await dados.json()
+            let dadosRefinados = "";
+            const resultado = estados.map(x =>{
+                dadosRefinados += `<li>${x.nome}</li>`
+            })
+
+            document.body.insertAdjacentHTML("beforeend", `<ul>${dadosRefinados}</ul>`)
+        }
+
+        chamandoViaFetch("dados/estados.json")
     </script>
 </body>
